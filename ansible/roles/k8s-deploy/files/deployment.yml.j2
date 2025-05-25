@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: healthcare-container
-        image: ashwinr2001/healthcaredev:{{ build_tag }}
+        image: "{{ image_name }}"
         ports:
         - containerPort: 8082
 ---
