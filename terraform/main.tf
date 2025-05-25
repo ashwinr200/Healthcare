@@ -18,7 +18,7 @@ resource "aws_instance" "master" {
   associate_public_ip_address = true
 
   tags = {
-    Name = "${var.env}_master"
+    Name = "Healthcare_${var.env}_master"
     Role = "master"
   }
 
@@ -33,7 +33,7 @@ resource "aws_instance" "node" {
   associate_public_ip_address = true
 
   tags = {
-    Name = "${var.env}_node"
+    Name = "Healthcare_${var.env}_node"
     Role = "node"
   }
 
