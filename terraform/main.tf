@@ -17,8 +17,15 @@ resource "aws_instance" "master" {
   key_name                    = var.key_name
   associate_public_ip_address = true
 
+
+ root_block_device {
+    volume_size = 30            # Increase to 30 GB
+    volume_type = "gp3"
+    delete_on_termination = true
+  }
+
   tags = {
-    Name = "Healthcare_${var.env}_master"
+    Name = "${var.env}_master"
     Role = "master"
   }
 
@@ -32,8 +39,13 @@ resource "aws_instance" "node" {
   key_name                    = var.key_name
   associate_public_ip_address = true
 
+ root_block_device {
+    volume_size = 30            # Increase to 30 GB
+    volume_type = "gp3"
+    delete_on_termination = true
+  }
   tags = {
-    Name = "Healthcare_${var.env}_node"
+    Name = "${var.env}_node"
     Role = "node"
   }
 
