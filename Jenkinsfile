@@ -468,7 +468,6 @@ stage('Start Prometheus on Master') {
   nohup ./node_exporter --web.listen-address="0.0.0.0:9100" > /tmp/node_exporter.log 2>&1 &
   cd /opt/prometheus
  nohup ./prometheus > /tmp/prometheus.log 2>&1 &
-  exit 0
                 '
             """
         }
@@ -484,7 +483,7 @@ stage('Start Prometheus on Node') {
   nohup ./node_exporter --web.listen-address="0.0.0.0:9101" > /tmp/node_exporter.log 2>&1 &
   cd /opt/prometheus
   nohup ./prometheus > /tmp/prometheus.log 2>&1 &
-  exit 0
+ 
                 '
             """
         }
