@@ -1,35 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: finance-app
+  name: Healthcare-app
   labels:
-    app: finance
+    app: Healthcare
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: finance
+      app: Healthcare
   template:
     metadata:
       labels:
-        app: finance
+        app: Healthcare
     spec:
       containers:
-      - name: finance-container
-        image: ashwinr2001/financedev:{{ build_tag }}
+      - name: Healthcare-container
+        image: ashwinr2001/healthcaredev:{{ build_tag }}
         ports:
-        - containerPort: 8081
+        - containerPort: 8082
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: finance-service
+  name: Healthcare-service
 spec:
   selector:
-    app: finance
+    app: Healthcare
   ports:
     - protocol: TCP
-      port: 8081         # Cluster-internal port
-      targetPort: 8081   # Container port
+      port: 8082         # Cluster-internal port
+      targetPort: 8082   # Container port
       nodePort: 30000     # External port on EC2 host
   type: NodePort
