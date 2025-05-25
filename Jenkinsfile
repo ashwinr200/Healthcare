@@ -509,12 +509,12 @@ post {
              HealthCare Stage Deployment completed successfully!
 
              Master Node:
-             - Public IP: ${env.MASTER_PUBLIC_IP}:30000
+             - Public IP: ${env.MASTER_PUBLIC_IP}:30001
              - Private IP: ${env.MASTER_PRIVATE_IP}
              - Prometheus : ${env.MASTER_PUBLIC_IP}:9090
 
              Worker Node:
-             - Public IP: ${env.NODE_PUBLIC_IP}:30000
+             - Public IP: ${env.NODE_PUBLIC_IP}:30001
              - Private IP: ${env.NODE_PRIVATE_IP}
              """
     }
