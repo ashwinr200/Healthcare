@@ -5,7 +5,7 @@ pipeline {
         AWS_DEFAULT_REGION = 'us-east-1'
         TERRAFORM_DIR = 'terraform'
         ANSIBLE_DIR = 'ansible'
-        IMAGE_NAME = 'financestage'
+        IMAGE_NAME = 'healthcarestage'
         DOCKER_USER = 'ashwinr2001'
         BRANCH_TAG = "${env.BRANCH_NAME}-${env.BUILD_NUMBER}".replaceAll('/', '-')
         FULL_IMAGE = "${DOCKER_USER}/${IMAGE_NAME}:${BRANCH_TAG}"
@@ -21,7 +21,7 @@ pipeline {
 
         stage('Clone Repo') {
             steps {
-                git branch: 'stage', url: 'https://github.com/ashwinr200/Finance.git'
+                git branch: 'stage', url: 'https://github.com/ashwinr200/Healthcare.git'
             }
         }
 
