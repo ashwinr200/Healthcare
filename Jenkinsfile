@@ -398,7 +398,7 @@ stage('Clone Repo on Master') {
         sshagent(['ssh-key-ansadmin1']) {
             sh """
                 ssh -o StrictHostKeyChecking=no ansadmin@${env.MASTER_PUBLIC_IP} '
-                    git clone -b stage https://github.com/ashwinr200/Finance.git /tmp/Finance
+                    git clone -b stage https://github.com/ashwinr200/Healthcare.git /tmp/Healthcare
                 '
             """
         }
@@ -410,7 +410,7 @@ stage('Build with Maven on Master') {
         sshagent(['ssh-key-ansadmin1']) {
             sh """
                 ssh -o StrictHostKeyChecking=no ansadmin@${env.MASTER_PUBLIC_IP} '
-                    cd /tmp/Finance &&
+                    cd /tmp/Healthcare &&
                     mvn clean package
                 '
             """
@@ -423,7 +423,7 @@ stage('Build Docker Image on Master') {
         sshagent(['ssh-key-ansadmin1']) {
             sh """
                 ssh -o StrictHostKeyChecking=no ansadmin@${env.MASTER_PUBLIC_IP} '
-                    cd /tmp/Finance &&
+                    cd /tmp/Healthcare &&
                     docker build -t ${FULL_IMAGE} .
                 '
             """
@@ -451,7 +451,7 @@ stage('Run Ansible on Master') {
         sshagent(['ssh-key-ansadmin1']) {
             sh """
                 ssh -o StrictHostKeyChecking=no ansadmin@${env.MASTER_PUBLIC_IP} '
-                    cd /tmp/Finance
+                    cd /tmp/Healthcare
                    ansible-playbook -i "localhost," -c local ansible-deploy.yml --extra-vars "build_tag=${BRANCH_TAG} image_name=${FULL_IMAGE} master_ip=${env.MASTER_PUBLIC_IP} node_ip=${env.NODE_PUBLIC_IP}"
                 '
             """
